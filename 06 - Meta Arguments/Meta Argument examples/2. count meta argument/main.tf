@@ -2,8 +2,7 @@
 resource "aws_s3_bucket" "backend" {
   count = var.create_vpc ? 1 : 0
 
-  #bucket = "lower(bootcamp29-${random_integer.s3.result}-${var.name}"
-  bucket = "my-elk-testing-bucket-254"
+  bucket = "lower(class33-${random_integer.s3.result}-${var.name}"
 
   tags = {
     Name        = "My bucket"
@@ -12,12 +11,6 @@ resource "aws_s3_bucket" "backend" {
 }
 
 #2. Bucket ACL
-#resource "aws_s3_bucket_acl" "example" {
-# bucket = aws_s3_bucket.backend[0].id
-# acl    = var.acl
-#}
-
-##############################################################################
 resource "aws_s3_bucket_public_access_block" "my_bucket" {
   bucket = aws_s3_bucket.backend[0].id
 
@@ -27,6 +20,7 @@ resource "aws_s3_bucket_public_access_block" "my_bucket" {
   restrict_public_buckets = true
 }
 
+#4. Bucket logging
 resource "aws_s3_bucket_logging" "my_bucket" {
   bucket        = aws_s3_bucket.backend[0].bucket
   target_bucket = "landmark-automation-kenmak"
@@ -34,7 +28,7 @@ resource "aws_s3_bucket_logging" "my_bucket" {
 }
 
 
-#3. Bucket versioning
+#4. Bucket versioning
 resource "aws_s3_bucket_versioning" "versioning_example" {
   bucket = aws_s3_bucket.backend[0].id
   versioning_configuration {
@@ -42,24 +36,20 @@ resource "aws_s3_bucket_versioning" "versioning_example" {
   }
 }
 
-#4. Random integer
+#5. Random integer
 resource "random_integer" "s3" {
   max = 100
   min = 1
-
-  keepers = {
-    bucket_owner = var.name
-  }
 }
 
-#5. KMS for bucket encryption
+#6. KMS for bucket encryption
 resource "aws_kms_key" "mykey" {
   description             = "This key is used to encrypt bucket objects"
   deletion_window_in_days = 10
   enable_key_rotation     = true
 }
 
-#6. Bucket encryption
+#7. Bucket encryption
 resource "aws_s3_bucket_server_side_encryption_configuration" "backend" {
   bucket = aws_s3_bucket.backend[0].id
 
