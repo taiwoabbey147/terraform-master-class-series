@@ -14,11 +14,11 @@ https://www.terraform.io/docs/configuration/syntax.html
 ## Terraform high level blocks
       - Terraform Settings Block
       - Provider Block
-      - Resource Block
-      - Input Variables Block
-      - Output Values Block
-      - Local Values Block
-      - Data Sources Block
+      - Resource Block  # The type of resources you want to create in aws
+      - Input Variables Block # Arguments you put in e.g ami = "ami-0005e0cfe09cc9050" OR instance_type = "t2.micro"
+      - Output Values Block   # Attribute What you will get back once you do terraform apply e.g PublicIP,PriavteIP,ARN
+      - Local Values Block 
+      - Data Sources Block   # To get a Data back from aws e.g amiID,vpcName,SubNetID
       - Modules Block
       - Moved Blocks
       - Import block
