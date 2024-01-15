@@ -16,7 +16,7 @@
 **terraform init**:
   - Used to initialize a working directory containing terraform config files. 
   - This is the first command that should be run after writing a new terraform configuration file. 
-  - It downloads providers and modules
+  - It downloads providers and modules Plugins
 
 **terraform validate**:
   - Validates the configuration files in the respective directory to ensure that they are syntactically valid and internally consistent.
