@@ -6,7 +6,7 @@ https://www.terraform.io/docs/configuration/syntax.html
 - An example of a block template is as below.
 ## Template
 
-     <BLOCK TYPE> "<BLOCK LABEL>" "<BLOCK LABEL>"   {
+     <BLOCK TYPE> "<RESOURCE_TYPE OR BLOCK LABEL>" "<RESOURCE_NAME OR BLOCK LABEL>"   {
        # Block body
       <IDENTIFIER> = <EXPRESSION> # Argument
      }
